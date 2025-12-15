@@ -1,0 +1,1332 @@
+@charset "UTF-8";
+/*-------------------------------------------
+共通
+-------------------------------------------*/
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #333333;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  position: relative;
+  color: #333333;
+  background-color: #E4DFD9;
+  font-size: 18px;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.wide-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sec-title {
+  position: relative;
+}
+.sec-title h2 {
+  margin-left: 20px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 100%;
+}
+.sec-title p {
+  position: absolute;
+  top: -20px;
+  display: inline-block;
+  transform: rotate(90deg);
+  transform-origin: left bottom;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sec-title2 {
+  display: block;
+  margin: 60px 0 40px;
+  text-align: center;
+  color: #498599;
+}
+.sec-title2 h2 {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 100%;
+}
+.sec-title2 p {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sec-title3 {
+  display: block;
+  margin: 40px 15px;
+  width: 40%;
+  text-align: left;
+  color: #E4DFD9;
+}
+.sec-title3 h2 {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 100%;
+}
+.sec-title3 p {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.wbr {
+  word-break: keep-all;
+}
+
+/*-------------------------------------------
+ハンバーガーメニュー
+-------------------------------------------*/
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #E4DFD9;
+}
+.toggle-btn span {
+  /* spanはインライン要素 */
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35px;
+  height: 3px;
+  background-color: #978D7A;
+  transition: 0.5s;
+}
+.toggle-btn span:nth-child(1) {
+  top: 30%;
+}
+.toggle-btn span:nth-child(2) {
+  top: 50%;
+}
+.toggle-btn span:nth-child(3) {
+  top: 70%;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: calc(100vh - 20px);
+  margin: 10px;
+  background-color: rgba(151, 141, 122, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  transition: 0.5s;
+  opacity: 0;
+  pointer-events: none;
+  padding: 3%;
+}
+nav img {
+  max-width: 250px;
+  margin-bottom: 20px;
+}
+nav ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+nav ul li {
+  display: inline-block;
+  padding: 15px 0;
+  font-size: 28px;
+}
+nav ul li a {
+  position: relative;
+  color: #E4DFD9;
+  display: inline-block;
+}
+nav ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #E4DFD9;
+  transform: scale(0, 1);
+  transform-origin: left;
+  transition: all 0.8s ease;
+}
+nav ul li a:hover::before {
+  transform: scale(1, 1);
+  transition: all 0.3s ease;
+}
+
+.open .toggle-btn span {
+  background-color: #978D7A;
+}
+.open .toggle-btn span:nth-child(1) {
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+}
+.open .toggle-btn span:nth-child(2) {
+  opacity: 0;
+}
+.open .toggle-btn span:nth-child(3) {
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+.open nav {
+  z-index: 15;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/*-------------------------------------------
+予約ボタン
+-------------------------------------------*/
+.reserve-fixed {
+  position: fixed;
+  right: 10px;
+  top: 100px;
+  z-index: 12;
+  display: block;
+  width: 60px;
+  text-align: center;
+  background-color: #E4DFD9;
+  padding: 10px;
+  writing-mode: vertical-rl;
+  transition: all 0.5s ease;
+}
+.reserve-fixed p {
+  font-weight: bold;
+  border: solid 2px #978D7A;
+  color: #978D7A;
+  padding: 20px 5px 30px;
+  font-size: 18px;
+}
+.reserve-fixed .sample5-2::before {
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #978D7A;
+  border-right: 3px solid #978D7A;
+  transform: rotate(135deg);
+}
+.reserve-fixed .arrow::before,
+.reserve-fixed .arrow::after {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+
+.reserve-fixed:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+}
+
+/*-------------------------------------------
+トップへ戻るボタン
+-------------------------------------------*/
+.scrollbtn {
+  position: relative;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 20;
+  width: 50px;
+  height: 50px;
+  border: #978D7A 2px solid;
+  border-radius: 50%;
+  background-color: #E4DFD9;
+}
+.scrollbtn::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  border-top: 0 solid;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #978D7A;
+  border-left: 7px solid transparent;
+}
+
+.toggle-btn,
+.reserve-fixed,
+.scrollbtn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.toggle-btn.show,
+.reserve-fixed.show,
+.scrollbtn.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  height: 70px;
+}
+header h1 {
+  width: 250px;
+}
+header .header-right {
+  display: flex;
+  padding: 10px 15px 0 0;
+  font-weight: bold;
+}
+header .header-right li {
+  display: inline-block;
+  margin-left: 30px;
+  /* ホバー時の動き */
+}
+header .header-right li .flip-text {
+  position: relative;
+  display: inline-block;
+  height: 60px;
+  text-align: center;
+  line-height: 100%;
+  color: #978D7A;
+}
+header .header-right li .front {
+  position: static;
+  transform: translateX(-50%);
+  display: inline;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+header .header-right li .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -100%);
+  display: inline-block;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+header .header-right li .ja {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 60px;
+  transform: translate(-50%, -100%);
+  opacity: 0;
+  font-size: 12px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+header .header-right li .flip-text:hover .front {
+  transform: translate(0%, 100%);
+  opacity: 0;
+}
+header .header-right li .flip-text:hover .back {
+  transform: translate(0%, -20%);
+  opacity: 1;
+}
+header .header-right li .flip-text:hover .ja {
+  transform: translate(-50%, 100%);
+  opacity: 1;
+}
+
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #E4DFD9;
+  opacity: 1;
+  z-index: 30;
+  transition: all 1s ease;
+  text-align: center;
+}
+#loading img {
+  margin-top: 40vh;
+  width: 200px;
+}
+
+.loaded {
+  animation: fadeOut 2s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  animation-fill-mode: both;
+  animation: load7 1.8s infinite ease-in-out;
+}
+
+.loader {
+  color: #2A6541;
+  font-size: 10px;
+  margin: 0px auto;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+.loader:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+
+.loader:after {
+  left: 3.5em;
+}
+@keyframes load7 {
+  0%, 80%, 100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+/*-------------------------------------------
+ファーストビュー
+-------------------------------------------*/
+.first-view {
+  position: relative;
+  margin: 0;
+}
+.first-view video {
+  width: 100%;
+  height: calc(100vh - 70px);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.first-view .phrase {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+}
+.first-view .phrase .ja {
+  color: #f2ece6;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeUp 1.5s ease-out forwards 1s;
+  opacity: 0;
+}
+.first-view .phrase .en {
+  color: #f2ece6;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeUp 1.5s ease-out forwards;
+  opacity: 0;
+}
+.first-view .phrase .asterisk {
+  width: 50px;
+  opacity: 0;
+  display: block;
+  margin: 0 auto;
+  animation: fadeUp 1.5s ease-out forwards 3s, spinPause 4s infinite;
+  animation-timing-function: ease-in-out;
+}
+.first-view .phrase .scroll {
+  color: #f2ece6;
+  font-size: 18px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeUp 1.5s ease-out forwards 3s;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.asterisk {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  animation: spinPause 4s infinite; /* 3秒回転 + 1秒停止 */
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes spinPause {
+  0% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(1080deg);
+  } /* ここまでで3秒分の動き */
+  100% {
+    transform: rotate(1080deg);
+  } /* 最後の30%で停止（約1秒） */
+}
+/*-------------------------------------------
+コンセプト
+-------------------------------------------*/
+.concept {
+  position: relative;
+  display: flex;
+  padding: 100px 0 200px;
+}
+.concept .sec-title {
+  color: #978D7A;
+}
+.concept .concept-left {
+  width: 45%;
+}
+.concept .concept-left .concept-bold {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 0 40px 30px;
+}
+.concept .concept-left .concept-detail {
+  margin-left: 30px;
+  color: rgba(51, 51, 51, 0.8);
+}
+.concept .concept-right {
+  margin: 74px 0 0 20px;
+  width: 55%;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/*=== 画像の表示エリア ================================= */
+.slide {
+  position: relative;
+  overflow: hidden;
+  width: 60%;
+  aspect-ratio: 1/0.8;
+  margin: 0 30px 30px;
+}
+
+/*=== 画像の設定 ======================================= */
+.slide img {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: slideAnime 9s ease infinite;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/*=== スライドのアニメーションを段差で開始する ========= */
+.slide img:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.slide img:nth-of-type(2) {
+  animation-delay: 3s;
+}
+
+.slide img:nth-of-type(3) {
+  animation-delay: 6s;
+}
+
+/*=== スライドのアニメーション ========================= */
+@keyframes slideAnime {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  41% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*-------------------------------------------
+サウナ
+-------------------------------------------*/
+.sauna {
+  background-color: #2A6541;
+  position: relative;
+  padding-bottom: 100px;
+}
+.sauna .wave {
+  position: absolute;
+  bottom: 99.8%;
+}
+.sauna .sec-title {
+  color: #E4DFD9;
+}
+.sauna .sauna-item {
+  display: flex;
+  justify-content: center;
+  color: #E4DFD9;
+  margin: 0 auto;
+  padding-inline: 30px;
+  overflow: visible;
+  max-width: 1400px;
+}
+.sauna .sauna-item .sauna-img {
+  width: 55%;
+  height: 90vh;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.sauna .sauna-item .sauna-img img {
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.sauna .sauna-item .sauna-item-right {
+  width: 45%;
+  margin: 0 40px;
+}
+.sauna .sauna-item .inner {
+  margin: auto 0;
+  background-color: #2A6541;
+  padding: 140px 0;
+}
+.sauna .sauna-item .sauna-item-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  margin: 20px 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+}
+.sauna .sauna-item .sauna-item-title .number {
+  font-size: 60px;
+  line-height: 100%;
+  margin-right: 10px;
+}
+.sauna .sauna-item .sauna-item-title h3 {
+  font-size: 60px;
+  line-height: 100%;
+}
+.sauna .sauna-item .sauna-item-title .subtitle {
+  font-size: 35px;
+  line-height: 100%;
+}
+.sauna .sauna-item .facility {
+  margin-bottom: 20px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 25px;
+  font-weight: bold;
+}
+.sauna .sauna-item .sauna-detail {
+  width: 100%;
+  line-height: 180%;
+}
+.sauna .slide-items {
+  margin: 150px 0 150px;
+  width: 100%;
+  height: auto;
+}
+.sauna .slide-items img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding: 0 10px;
+}
+.sauna .amenity {
+  padding: 0 20px;
+}
+.sauna .amenity .amenity-title {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.sauna .amenity .amenity-title img {
+  position: absolute;
+  top: -60px;
+  left: -30px;
+  z-index: 0;
+  width: 250px;
+}
+.sauna .amenity .amenity-title h4 {
+  position: relative;
+  z-index: 10;
+  font-size: 20px;
+  color: #E4DFD9;
+}
+.sauna .amenity ul {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 40px 30px 30px 230px;
+  max-width: 800px;
+  background-color: #E4DFD9;
+  border-radius: 50px;
+}
+.sauna .amenity ul li {
+  width: 50%;
+  list-style: initial;
+}
+
+.reservation_cta_wrapper {
+  padding: 0 15px;
+}
+
+.reservation_cta {
+  display: block;
+  margin: 60px auto 0;
+  background-color: #978D7A;
+  max-width: 600px;
+  border: solid 0px #978D7A;
+}
+.reservation_cta p {
+  display: block;
+  padding: 20px;
+  width: 100%;
+  background-color: #E4DFD9;
+  border: solid 1px #978D7A;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-weight: bold;
+  border-radius: 30px;
+  color: #978D7A;
+  text-align: center;
+  transition: all 0.5s ease;
+  font-size: 20px;
+}
+
+.reservation_cta:hover p {
+  border-radius: 50px;
+}
+
+/*-------------------------------------------
+お知らせ
+-------------------------------------------*/
+.news {
+  padding: 50px 0 100px;
+}
+.news .articles {
+  padding: 10px;
+  display: grid;
+  grid-auto-rows: 360px;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.news .articles .article {
+  display: block;
+  width: 300px;
+  height: 360px;
+  padding: 20px;
+  background-color: #F5F5F5;
+  margin: 0 auto;
+  box-shadow: 11px 10px 9px 0px rgba(17, 17, 10, 0.1);
+}
+.news .articles .article img {
+  width: 100%;
+  height: 60%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.news .articles .article .news-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.news .articles .article .news-info p {
+  padding: 0 5px;
+  background-color: #498599;
+  border-radius: 15px;
+  color: #F5F5F5;
+}
+.news .articles .article:hover {
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+
+/*-------------------------------------------
+アクセス
+-------------------------------------------*/
+.access {
+  padding: 50px 15px 100px;
+  background-color: #498599;
+}
+.access .access-upper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+.access dl {
+  color: #E4DFD9;
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  padding: 20px;
+}
+.access dl dt {
+  width: 40%;
+  border-bottom: solid 1px #E4DFD9;
+  padding: 10px;
+}
+.access dl dd {
+  width: 60%;
+  border-bottom: solid 1px #E4DFD9;
+  padding: 10px;
+}
+.access .tab-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+}
+.access .tab-container .tab {
+  padding: 10px;
+  width: 30%;
+  background-color: #E4DFD9;
+  border-top: #2A6541 5px solid;
+  text-align: center;
+  color: #333333;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  filter: brightness(0.8);
+  font-size: 18px;
+}
+.access .tab-container .tab p {
+  display: block;
+}
+.access .tab-container .tab img {
+  display: none;
+  margin: 0 auto;
+  width: 50px;
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.access .tab-container .tab.active {
+  filter: brightness(1);
+}
+.access .access-contents {
+  margin: 0 auto;
+  width: 100%;
+}
+.access .access-contents .access-content {
+  display: none;
+}
+.access .access-contents .access-content.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #E4DFD9;
+  box-shadow: 11px 10px 9px 0px rgba(17, 17, 10, 0.1);
+}
+.access .access-contents .access-content.show p {
+  display: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.access .access-contents .access-content.show .pc {
+  display: block;
+  padding: 5%;
+  max-width: 700px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.access .access-contents .access-content.show .sp {
+  display: none;
+  padding: 5%;
+  max-width: 450px;
+  height: 100vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+footer {
+  padding: 10px 20px 60px;
+  background-color: #c0bbb6;
+}
+footer .wrapper {
+  display: flex;
+  color: #2A6541;
+}
+footer .wrapper .footer-left {
+  width: 50%;
+}
+footer .wrapper .footer-left img {
+  width: 250px;
+  margin: 0 0 20px 0;
+}
+footer .wrapper .footer-left p {
+  padding: 10px;
+}
+footer .wrapper .footer-right {
+  width: 50%;
+}
+footer .wrapper .footer-right ul {
+  padding: 0 10px;
+}
+footer .wrapper .footer-right ul li {
+  padding: 10px;
+}
+footer .wrapper .footer-right ul li a {
+  position: relative;
+  color: #2A6541;
+}
+footer .wrapper .footer-right ul li a::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 2px;
+  height: 16px;
+  background-color: #2A6541;
+}
+
+/*-------------------------------------------
+個別ページ共有
+-------------------------------------------*/
+.header-space {
+  position: relative;
+  margin-bottom: 60px;
+  height: 160px;
+  background-image: url(../img/headerimg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header-space img {
+  position: absolute;
+  bottom: -1px; /* 下端に配置 */
+  left: 0; /* 左端に配置（必要なら調整） */
+}
+
+.footer-space {
+  height: 50px;
+  background-image: url(../img/headerimg.png);
+}
+
+/*-------------------------------------------
+料金
+-------------------------------------------*/
+.price-table {
+  margin: 60px auto 100px;
+  padding: 0 15px;
+  text-align: center;
+}
+.price-table td, .price-table th {
+  border: 1px solid #333333;
+  padding: 15px 25px;
+}
+.price-table th {
+  background-color: #498599;
+  color: white;
+}
+.price-table table {
+  display: inline-block;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/*-------------------------------------------
+ご予約
+-------------------------------------------*/
+.reserve-item {
+  margin-bottom: 80px;
+}
+.reserve-item dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+.reserve-item dl dt {
+  padding: 20px;
+  width: 30%;
+}
+.reserve-item dl dd {
+  padding: 20px;
+  width: 70%;
+}
+.reserve-item dl .date {
+  display: flex;
+}
+.reserve-item dl .date input {
+  width: 200px;
+}
+.reserve-item dl .date p {
+  padding: 0 20px 0 10px;
+}
+.reserve-item input, .reserve-item textarea {
+  border: 1px solid #978D7A;
+  width: 100%;
+}
+.reserve-item .sendbtn {
+  display: block;
+  margin: 30px auto;
+  padding: 20px 0;
+  max-width: 250px;
+  text-align: center;
+  background-color: #2A6541;
+  color: #E4DFD9;
+  font-weight: bold;
+  border-radius: 35px;
+}
+.reserve-item .sendbtn:hover {
+  background-color: #153120;
+  transition: all 0.5s ease;
+}
+
+/*-------------------------------------------
+記事
+-------------------------------------------*/
+article {
+  padding: 10px 10px 60px;
+}
+article h2 {
+  margin: 0 0 20px 0;
+  font-size: 30px;
+}
+article img {
+  width: 100%;
+  height: 80vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/*-------------------------------------------
+レスポンシブ
+-------------------------------------------*/
+@media (max-width: 960px) {
+  /*-------------------------------------------
+  ヘッダー
+  -------------------------------------------*/
+  header h1 {
+    width: 220px;
+  }
+  header .header-right {
+    font-size: 15px;
+  }
+  header .header-right li {
+    margin-left: 20px;
+  }
+  /*-------------------------------------------
+  ファーストビュー
+  -------------------------------------------*/
+  .first-view {
+    position: relative;
+    margin: 0;
+  }
+  .first-view video {
+    height: calc(100vh - 60px);
+  }
+  /*-------------------------------------------
+  コンセプト
+  -------------------------------------------*/
+  .concept {
+    flex-direction: column;
+  }
+  .concept .concept-left {
+    width: 100%;
+  }
+  .concept .concept-left .concept-bold {
+    text-align: center;
+  }
+  .concept .concept-left .concept-detail {
+    text-align: center;
+  }
+  .concept .concept-right {
+    margin: 50px 0;
+    padding: 0 20px;
+    width: 100%;
+    height: 300px;
+  }
+  .slide {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1/0.3;
+    margin: 0 30px 30px;
+  }
+  /*-------------------------------------------
+  サウナ
+  -------------------------------------------*/
+  .sauna {
+    padding-bottom: 100px;
+  }
+  .sauna .sauna-item {
+    max-height: 1000px;
+  }
+  .sauna .sauna-item .sauna-img {
+    width: 100%;
+    height: 500px;
+  }
+  .sauna .sauna-item .sauna-img img {
+    height: 500px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .sauna .sauna-item .sauna-item-right {
+    width: 100%;
+    margin: 0 0;
+  }
+  .sauna .sauna-item .inner {
+    margin: 0;
+    padding: 20px 0 100px;
+  }
+  .sauna .sauna-item .sauna-item-title .number {
+    font-size: 50px;
+  }
+  .sauna .sauna-item .sauna-item-title h3 {
+    font-size: 50px;
+  }
+  .sauna .sauna-item .sauna-item-title .subtitle {
+    font-size: 25px;
+  }
+  .sauna .sauna-item .facility {
+    font-size: 20px;
+  }
+  .sauna .sauna-item .sauna-detail {
+    padding: 0;
+    width: 100%;
+    line-height: 180%;
+    font-size: 16px;
+  }
+  .sauna .column {
+    flex-direction: column;
+  }
+  .sauna .reverse {
+    flex-direction: column-reverse;
+  }
+  .sauna .slide-items {
+    margin: 0px 0 150px;
+    width: 100%;
+    height: auto;
+  }
+  .sauna .slide-items img {
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    padding: 0 10px;
+  }
+}
+@media (max-width: 700px) {
+  /*-------------------------------------------
+  ハンバーガーメニュー
+  -------------------------------------------*/
+  .toggle-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  nav {
+    width: calc(100% - 20px);
+    height: calc(100vh - 20px);
+  }
+  nav img {
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  /*-------------------------------------------
+  予約ボタン
+  -------------------------------------------*/
+  .reserve-fixed {
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+  }
+  .reserve-fixed p {
+    line-height: 100%;
+    padding: 20px 5px 30px;
+  }
+  .reserve-fixed .sample5-2::before {
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid #978D7A;
+    border-right: 3px solid #978D7A;
+    transform: rotate(135deg);
+  }
+  .reserve-fixed .arrow::before,
+  .reserve-fixed .arrow::after {
+    bottom: 20px;
+    left: 13px;
+  }
+  /*-------------------------------------------
+  トップに戻るボタン
+  -------------------------------------------*/
+  .scrollbtn {
+    bottom: 30px;
+    right: 10px;
+    z-index: 20;
+    width: 42px;
+    height: 42px;
+  }
+  /*-------------------------------------------
+  ヘッダー
+  -------------------------------------------*/
+  header {
+    height: 60px;
+  }
+  header h1 {
+    width: 180px;
+  }
+  header .header-right {
+    display: none !important;
+  }
+  /*-------------------------------------------
+  コンセプト
+  -------------------------------------------*/
+  .slide {
+    width: 90%;
+    aspect-ratio: 1/0.8;
+  }
+  /*-------------------------------------------
+  サウナ
+  -------------------------------------------*/
+  .sauna .amenity .amenity-title img {
+    top: -50px;
+    left: -15px;
+    width: 200px;
+  }
+  .sauna .amenity ul {
+    padding: 80px 15px 30px 40px;
+    font-size: 15px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #E4DFD9;
+    border-radius: 50px;
+  }
+  .sauna .amenity ul li {
+    width: 50%;
+    list-style: initial;
+  }
+  /*-------------------------------------------
+  アクセス
+  -------------------------------------------*/
+  .sec-title3 {
+    width: 100%;
+    text-align: center;
+  }
+  .access .access-upper {
+    flex-direction: column;
+  }
+  .access dl {
+    width: 100%;
+  }
+  .access .tab-container .tab p {
+    display: none;
+  }
+  .access .tab-container .tab img {
+    display: block;
+  }
+  .access .access-contents .access-content {
+    display: none;
+  }
+  .access .access-contents .access-content.show p {
+    display: block;
+  }
+  .access .access-contents .access-content.show .pc {
+    display: none;
+  }
+  .access .access-contents .access-content.show .sp {
+    display: block;
+  }
+  /*-------------------------------------------
+  フッター
+  -------------------------------------------*/
+  footer .wrapper {
+    flex-direction: column;
+  }
+  footer .wrapper .footer-left {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  footer .wrapper .footer-right {
+    width: 100%;
+  }
+  /*-------------------------------------------
+  個別ページ共有
+  -------------------------------------------*/
+  .header-space {
+    height: 100px;
+  }
+  /*-------------------------------------------
+  料金
+  -------------------------------------------*/
+  .price-table td, .price-table th {
+    padding: 15px 15px;
+  }
+  /*-------------------------------------------
+  ご予約
+  -------------------------------------------*/
+  .reserve-item dl {
+    flex-direction: column;
+  }
+  .reserve-item dl dt {
+    padding: 0 20px;
+    width: 100%;
+  }
+  .reserve-item dl dd {
+    padding: 20px;
+    width: 100%;
+  }
+  /*-------------------------------------------
+  記事
+  -------------------------------------------*/
+  article h2 {
+    font-size: 20px;
+  }
+  article img {
+    width: 100%;
+    height: auto;
+  }
+}/*# sourceMappingURL=main.css.map */
